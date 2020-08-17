@@ -6,13 +6,13 @@ class User < ApplicationRecord
     validates :nickname
     validates :email,
       uniqueness: true,
-      format: { with: /\A\S+@\S+\.\S+\z/, message: "Email can't be blank"}
+      format: { with: /\A\S+@\S+\.\S+\z/}
     validates :password,
       format: { with: /\A[a-z\d]{6,}+\z/i}
     validates :family_name, :first_name,
-      format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "name can't be blank"}
+      format: { with: /\A[ぁ-んァ-ン一-龥]/ }
     validates :family_name_kana, :first_name_kana,
-      format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "First name kana can't be blank"}
+    format: { with: /\A[ァ-ヶー－]+\z/, }
     validates :birthday
   end
 end
