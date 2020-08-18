@@ -33,11 +33,6 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Email is invalid')
     end
 
-    it 'passwordが６文字以上で登録できる' do
-      @user.password = 'abc123'
-      @user.password_confirmation = 'abc123'
-      expect(@user).to be_valid
-    end
     it 'passwordが６文字以下では登録できない' do
       @user.password = 'abc12'
       @user.password_confirmation = 'abc12'
