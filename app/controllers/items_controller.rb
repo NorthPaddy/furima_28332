@@ -19,4 +19,8 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :name, :text, :category_id, :item_condition_id, :postage_id, :prefecture_id, :delivery_time_id, :price).merge(user_id: current_user.id)
   end
+
+  def redirect_root
+    redirect_to root_path unless user_signed_in?
+  end
 end
