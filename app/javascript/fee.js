@@ -8,7 +8,6 @@ window.addEventListener('load', function(){
     let price = parseInt(itemPrice.value)
     TaxPrice = price * 0.1
     buyProfit = price - TaxPrice
-    console.log(price)
     addTaxPrice.innerHTML = TaxPrice
     profit.innerHTML = buyProfit
   })
