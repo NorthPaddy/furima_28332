@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :redirect_root, except: [:index, :show]
-  before_action :set_item, only: :show
+  before_action :set_item, only: [:show, :edit, :update]
+
   def new
     @item = Item.new
   end
@@ -15,6 +16,17 @@ class ItemsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy
