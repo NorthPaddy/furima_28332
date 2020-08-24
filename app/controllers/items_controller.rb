@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :redirect_root, except: :index
-
+  before_action :redirect_root, except: [:index, :show]
+  before_action :set_item, only: :show
   def new
     @item = Item.new
   end
@@ -14,6 +14,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def item_params
@@ -22,5 +25,9 @@ class ItemsController < ApplicationController
 
   def redirect_root
     redirect_to root_path unless user_signed_in?
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
