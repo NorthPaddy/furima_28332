@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :redirect_root, expect: [:new, :create]
 
   def new
     @item = Item.find(params[:item_id])
@@ -21,6 +22,10 @@ class OrdersController < ApplicationController
 
   private
   
+def redirect_root
+  redirect_to root_path unless user_signed_in?
+end
+
   def order_params
     params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number,  :token, :item_id,).merge(user_id: current_user.id)
   end
