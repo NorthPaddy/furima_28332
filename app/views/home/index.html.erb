@@ -136,8 +136,7 @@
           <% end %> 
 
           <%# 商品が売れていればsold outの表示 %>
-          <%# 仮置き %>
-            <% if item.item_condition_id == 1 %>
+            <% if item.order.present? %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
@@ -189,9 +188,11 @@
   <%# //商品一覧 %>
 </div>
 <div class='purchase-btn'>
+<%= link_to new_item_path do %>
   <span class='purchase-btn-text'>出品する</span>
-  <a href="/items/new">
     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   </a>
+<% end %>
 </div>
+
 <%= render "shared/footer" %>
