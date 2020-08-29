@@ -3,12 +3,17 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   describe '商品購入者の情報の保存' do
     before do
-      @order_address = FactoryBot.build(:order_address)
+      @order_address = FactoryBot.build(:order_address, token: 'aaaaaaa')
     end
 
     it '全ての値が正しく入力されていれば保存できる' do
       expect(@order_address).to be_valid
     end
+    it 'building_nameが空でも保存できる' do
+      @order_address.building_name = ''
+      expect(@order_address).to be_valid
+    end
+
     it 'postal_codeが空だと保存できない' do
       @order_address.postal_code = nil
       @order_address.valid?

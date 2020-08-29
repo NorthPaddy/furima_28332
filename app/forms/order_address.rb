@@ -8,6 +8,7 @@ class OrderAddress
     validates :city
     validates :house_number
     validates :telephone_number, format: { with: /\A\d{11}\z/, message: 'is out of setting range' }
+    validates :token
   end
 
   def save
