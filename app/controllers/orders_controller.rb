@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :redirect_root, expect: [:new, :create]
   before_action :set_item, only: [:new, :create]
+  before_action :redirect_root, only: [:new,:create]
 
   def new
     @address = Address.all
@@ -21,11 +21,15 @@ class OrdersController < ApplicationController
   private
 
   def redirect_root
-    redirect_to root_path unless user_signed_in?
+    if user_signed_in? && current_user.id == @item.user_id
+      redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def set_item
-    @item = Item.find(perams[:id])
+    @item = Item.find(params[:item_id])
   end
 
   def order_params
