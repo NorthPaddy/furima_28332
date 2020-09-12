@@ -6,7 +6,7 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       const imageElement = document.createElement('div');
       const blobImage = document.createElement('img');
       blobImage.setAttribute('src', blob);
-  
+      blobImage.setAttribute("class", "image-preview");
       imageElement.appendChild(blobImage);
       imageList.appendChild(imageElement);
     }
@@ -18,7 +18,6 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
 
       const file = e.target.files[0];
       const blob = window.URL.createObjectURL(file);
-
       createImageHTML(blob);
     });
   });
